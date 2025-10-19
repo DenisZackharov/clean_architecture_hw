@@ -1,5 +1,5 @@
-from domain.entities.product import Product
 from pydantic import BaseModel
+from domain.entities.product import Product
 
 
 class Order(BaseModel):

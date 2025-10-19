@@ -1,18 +1,12 @@
-from typing import List
-from .models import Product, Order
-from .repositories import ProductRepository, OrderRepository
+from domain.entities.order import Order, Product
+from interface_adapters.repositories.order_repository import OrderRepository
 
-class WarehouseService:
-    def __init__(self, product_repo: ProductRepository, order_repo: OrderRepository):
-        self.product_repo=product_repo
-        self.order_repo=order_repo
 
-    def create_product(self, name: str, quantity: int, price: float) -> Product:
-        product = Product(id=None, name=name, quantity=quantity, price=price)
-        self.product_repo.add(product)
-        return product
+class CreateOrderService:
+    def __init__(self, order_repo: OrderRepository):
+        self.order_repo = order_repo
 
-    def create_order(self, products: List[Product]) -> Order:
+    def __call__(self, products: list[Product]) -> Order:
         order = Order(id=None, products=products)
         self.order_repo.add(order)
         return order

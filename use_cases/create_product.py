@@ -1,5 +1,5 @@
-from domain.entities.product import Product
-from .repositories import ProductRepository
+from domain.entities.product import Product, CreateProduct
+from interface_adapters.repositories.product_repository import ProductRepository
 
 
 class CreateProductService:
@@ -7,6 +7,6 @@ class CreateProductService:
         self.product_repo = product_repo
 
     def __call__(self, name: str, quantity: int, price: float) -> Product:
-        product = Product(id=None, name=name, quantity=quantity, price=price)
+        product = CreateProduct(name=name, quantity=quantity, price=price)
         self.product_repo.add(product)
         return product

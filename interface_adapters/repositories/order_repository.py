@@ -1,19 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
-from .models import Product, Order
+from domain.entities.order import Order
 
-class ProductRepository(ABC):
-    @abstractmethod
-    def add(self, product: Product):
-        pass
-
-    @abstractmethod
-    def get(self, product_id: int) -> Product:
-        pass
-
-    @abstractmethod
-    def list(self) -> List[Product]:
-        pass
 
 class OrderRepository(ABC):
     @abstractmethod
